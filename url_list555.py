@@ -30,7 +30,7 @@ urlnetloc = result.netloc
 urlpath = result.path
 urlquery = result.query
 t = urlparse.parse_qs(urlquery, True)
-print result
+#print result
 #print t
 print urlquery
 #print t['start']
