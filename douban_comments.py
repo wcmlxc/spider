@@ -11,8 +11,8 @@ import time
 import pymysql
 import function_urllist
 
-list= newurl_list()
-for url in list:
+url_list= function_urllist.newurl_list()
+for url in url_list:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400',
     }
@@ -22,6 +22,12 @@ for url in list:
     users = soup.select('div.comment > h3 > span.comment-info > a')
     time = soup.select('div.comment > h3 > span.comment-info > span.comment-time')
     comments = soup.select('div.comment > p ')
+# print data
+# print soup
+# print count
+# print users
+# print time
+
 
 values_list= []
 for index, item in enumerate(comments):
@@ -49,6 +55,6 @@ def executemany(sql,args):
 
 execute('DROP TABLE IF EXISTS content;')
 execute('CREATE TABLE IF NOT EXISTS content(id int not null primary key auto_increment, date date, \
-user varchar(50), comment varchar(500), vote int(11));')
+user varchar(100), comment varchar(500), vote int(15));')
 
 executemany('''insert into content (date,user,comment,vote) values(%s,%s,%s,%s)''', values_list)
