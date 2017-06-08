@@ -29,8 +29,14 @@ def executemany(sql, args):
 
 
 execute('DROP TABLE IF EXISTS content;')
-execute('CREATE TABLE IF NOT EXISTS content(id int not null primary key auto_increment, date date, \
-user varchar(100), comment varchar(500), vote int(15));')
+execute('''CREATE TABLE IF NOT EXISTS content
+            (id int not null primary key auto_increment,
+            date date,
+            user varchar(100),
+            comment varchar(500),
+            vote int(15)
+            );'''
+        )
 
 url_list = function_urllist.newurl_list()
 for url in url_list:
